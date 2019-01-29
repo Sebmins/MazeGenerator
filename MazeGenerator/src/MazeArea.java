@@ -60,7 +60,7 @@ public class MazeArea extends JComponent implements Runnable {
 			wait(100);
 			makeMaze(); // generate initial squares
 			generateWalls(); // generates walls between squares
-			solveMaze(1,1); // solves maze 
+			solveMaze(1,0); // solves maze 
 			wait(500); // waits so you can see maze solution 
 			clear(); // clears maze and loops again
 		}
@@ -96,15 +96,16 @@ public class MazeArea extends JComponent implements Runnable {
 	    }
 	    repaint();
 
-	    maze[1][0] = startFinish; // beginning of maze not covered in loop
+
+	    maze[1][0] = emptyCode; // beginning of maze not covered in loop
 	    for (int i = 1; i<rows-1; i += 2)
 	        for (int j = 1; j<columns-1; j += 2) { // loop created to place empty code on all odd rows and columns
 	        	pathCount++; // counts how many initial paths are needed
-	            maze[i][j] = -pathCount; //
+	            maze[i][j] = -pathCount; // makes empty code negative increasing incrementally 
 	            wait(10);
 	            repaint();	            
 	        }
-	    maze[rows-2][columns-1] = startFinish; // end of maze not covered in loop
+	    maze[rows-2][columns-1] = emptyCode; // end of maze not covered in loop
 	    
     }
     
@@ -170,33 +171,31 @@ public class MazeArea extends JComponent implements Runnable {
 	}
     
     boolean solveMaze(int row, int col) {
-    maze[1][0] = pathCode;
-    if (maze[row][col] == emptyCode) {
-        maze[row][col] = pathCode;
-        repaint();
-        if (row == rows-2 && col == columns-2)
-        {
-            maze[rows-2][columns-1] = pathCode;
-            return true;
-        }
-        wait(10);
-        
-        if ( solveMaze(row-1,col)  ||
-                solveMaze(row,col-1)  ||
-                solveMaze(row+1,col)  ||
-                solveMaze(row,col+1) )
-            return true;
-        maze[row][col] = visitedCode;
-        repaint();
-        synchronized(this) {
-            wait(10);
-        }
-    }
-    return false;
-    
+	    if (maze[row][col] == emptyCode) { // if block is not a wall then try that route
+	        maze[row][col] = pathCode; // add this block to solving path
+	        repaint(); 
+	        if (row == rows-2 && col == columns-1) // if in this block then found the exit
+	        {
+	            return true; // finish 
+	        }
+	        wait(10);
+	        
+	        if (	solveMaze(row-1,col)  || // checks below to see if it is correct
+	        		solveMaze(row,col+1)  || // checks right to see if it is correct
+	                solveMaze(row+1,col)  || // checks up to see if it is correct
+	                solveMaze(row,col-1))    // checks left to see if it is correct
+	            return true;
+	        
+	        maze[row][col] = visitedCode; // add this block to visited
+	        repaint();
+	        synchronized(this) {
+	            wait(10);
+	        }
+	    }
+	    return false;
     }
        
-    public void wait(int sleepTime)
+    public void wait(int sleepTime) // method delays usually used to paint components slower
     {
 		try { Thread.sleep(sleepTime); }
 		catch (InterruptedException e) { }
