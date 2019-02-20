@@ -8,19 +8,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class VariableDetails extends JPanel {
+	public static int inputX;
+	public static int inputY;
+	public static int inputC;
+	public static int valoop = 0;
+	
 	public VariableDetails() {
 		
 		setBorder(BorderFactory.createTitledBorder("Maze Variables"));
 		
 		JLabel rowLabel = new JLabel("Number of rows: "); // row label
 		JLabel colLabel = new JLabel("Number of columns: "); // col label
-		JLabel celLabel = new JLabel("Cell size: "); // cell size label
+//		JLabel celLabel = new JLabel("Cell size: "); // cell size label
 		
-		JTextField rowField = new JTextField("25",10); // row input
-		JTextField colField = new JTextField("25",10); // col input
-		JTextField celField = new JTextField("20",10); // cell size input
+		JTextField rowField = new JTextField(Integer.toString(MainGenerator.rowInput),10); // row input
+		JTextField colField = new JTextField(Integer.toString(MainGenerator.colInput),10); // col input
+//		JTextField celField = new JTextField("20",10); // cell size input
 		
 		JButton genBtn = new JButton("Generate"); 
 		
@@ -48,7 +54,7 @@ public class VariableDetails extends JPanel {
 		gc.gridx = 0; // cell size position third in left layout
 		gc.gridy = 2;
 		
-		add(celLabel, gc);
+//		add(celLabel, gc);
 				
 		//--------------------------------Second Row--------------------------------//
 		 
@@ -67,7 +73,7 @@ public class VariableDetails extends JPanel {
 		gc.gridx = 1; // cell size position third in right layout
 		gc.gridy = 2;
 		
-		add(celField, gc);
+//		add(celField, gc);
 		
 		//--------------------------------Third Row--------------------------------//
 		
@@ -80,25 +86,32 @@ public class VariableDetails extends JPanel {
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		add(genBtn, gc); // Adds button to the bottom of panel
 		
-		// USER INPUT // 
-		
-		genBtn.addActionListener(new ActionListener() {
+		// USER INPUT // 	
+				
+		ActionListener actList = new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				int inputX = Integer.parseInt(rowField.getText()); // input of row
-				int inputY = Integer.parseInt(colField.getText()); // input of col
-				int inputC = Integer.parseInt(celField.getText()); // input of cellsize
-				  
-				MainGenerator.cellSize = inputC; // sets input to variables
-				MainGenerator.sizeX = inputX;
-				MainGenerator.sizeY = inputY;
-								
-				MazeArea ma = new MazeArea(); 
+				inputY = Integer.parseInt(rowField.getText()); // input of row
+				inputX = Integer.parseInt(colField.getText()); // input of col
 				
-				Thread t = new Thread(ma); // Trying to restart thread on button press but doesn't work
-				
-				t.start();
+				if ( inputY >=5 && inputX>=5)
+				{
+					if (inputY%2!=0 && inputX%2!=0)
+					{
+						MazeArea.maloop = 1;
+					}else {
+						System.out.println("Has to be odd");
+					}
+				} else {
+					System.out.println("Has to be 5 or greater");
+				}
+
 			}
-		});
+		};
+		
+		genBtn.addActionListener(actList);
+		rowField.addActionListener(actList);
+		colField.addActionListener(actList);
+//		celField.addActionListener(actList);
 	}
 }
