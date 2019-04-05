@@ -1,21 +1,24 @@
+package Main;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Insets;
-
 import javax.swing.JFrame;
 
 public class Frame {
+
+	static MazeArea mArea = new MazeArea();
 	private VariableDetails vDetails;
 	
 	private static JFrame frame = new JFrame();
 	private double columns = MazeArea.columns;
 	private double rows = MazeArea.rows;
 	private static int cell= 128;
+	public static boolean exit = false;
 	
 	public Frame() {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		frame.setVisible(true);
 		
 		frame.setSize(950,950);
@@ -27,7 +30,6 @@ public class Frame {
 		System.out.println(frame.getSize());
 		
 		vDetails = new VariableDetails();
-		MazeArea mArea = new MazeArea();
 		
 		Container c = frame.getContentPane();
 		
@@ -35,11 +37,6 @@ public class Frame {
 		c.add(vDetails, BorderLayout.EAST); // Sets user input on right side
 		
 	}
-	
-	public static void setSize2(int width, int height) {
-		frame.setSize(width,height); // Method can be called to change size of frame
-	}
-	
 	public static void setSize3(double rows, double columns) {
 		frame.setSize(950,950);
 		Insets insets = frame.getInsets();
@@ -61,6 +58,14 @@ public class Frame {
         	cell = (int) Math.round(frame.getWidth() / (double) columns);
         	frame.setSize((int)(cell*columns+realWidth + 241),(int)(cell*rows+realHeight));
         }
-	}
+	}	
 	
+public static void cantClose() {
+	frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+}
+
+public static void canClose() {
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}   
+		
 }
