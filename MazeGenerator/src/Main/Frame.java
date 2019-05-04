@@ -60,12 +60,12 @@ public class Frame {
         }
 	}	
 	
-public static void cantClose() {
-	frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-}
-
-public static void canClose() {
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}   
-		
+	public static void cantClose() {
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	}
+	
+	public static void canClose() {
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}   
+			
 }

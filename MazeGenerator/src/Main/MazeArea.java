@@ -28,12 +28,14 @@ public class MazeArea extends JComponent implements Runnable {
 	final static int pathCode = 2; // correct solving path 
 	final static int visitedCode = 3; // incorrect solving path
 	
+	
 	Color[] colour; // array that stores colours
 	static int rows = (MainGenerator.rows); 
 	static int columns = (MainGenerator.columns); 
 	boolean mazeExists = false;  	
 	public boolean create = true;
-	int waitTime = (int) Math.round(highLowAlgo2(rows,columns));
+	static double waittime2 = 1;
+	static double waitTime = Math.round(highLowAlgo(rows,columns));
 	long startTime = System.currentTimeMillis();
 	long elapsedTime = 0L;
 
@@ -58,17 +60,14 @@ public class MazeArea extends JComponent implements Runnable {
 		image = img;
 	}
 	
-	
 	synchronized protected void paintComponent(Graphics g) { 		// graphics method that allows painting of frame
 		super.paintComponent(g); 									// method called when repaint(); called
 		if(caloop==1) {
-			System.out.println("DrawCam Trigger");
 	//		wait(400);
 			drawCam(g);
 			redrawMaze(g);
-		}else {
-		redrawMaze(g);
-		}
+		} else
+			redrawMaze(g);
 	}
 		
 	void drawCam(Graphics g) {
@@ -108,11 +107,12 @@ public class MazeArea extends JComponent implements Runnable {
 	public void run() {
 		while(create=true)
 		{
+			System.out.println(waitTime);
 			caloop = 0;
 			maloop = 0;
 			makeMaze();
 			generateWalls();
-			wait(200);
+			wait(200.0);
 			if(MainGenerator.dfs==true)
 				recursiveSolve(1,0,rows-2,columns-1);
 			if(MainGenerator.bfs==true)
@@ -125,12 +125,11 @@ public class MazeArea extends JComponent implements Runnable {
 					System.out.println("run loop triggered");
 					webcam();
 				}else 
-				wait(500);
+				wait(500.0);
 			} // waits so you can see maze solution
 			clear(); // clears maze and loops again
 			rows = VariableDetails.inputY;
 			columns = VariableDetails.inputX;
-			waitTime = highLowAlgo(rows,columns);
 			Frame.setSize3(rows,columns);
 		}
 		
@@ -144,7 +143,7 @@ public class MazeArea extends JComponent implements Runnable {
 	        {
 	            maze[i][j] = wallCode; // puts matrix back to all wall code
 	            repaint();
-	            wait(waitTime/5); // wait so can see the maze clearing
+	            wait(0.2); // wait so can see the maze clearing
 	        }
 	    }
 		maze = null;
@@ -169,7 +168,7 @@ public class MazeArea extends JComponent implements Runnable {
 	        	pathCount++; // counts how many initial paths are needed
 	            maze[i][j] = -pathCount; // makes empty code negative increasing incrementally 
 	            repaint();	  
-	            wait(waitTime);
+	            wait(waittime2*3);
 	        }
 	    maze[rows-2][columns-1] = emptyCode; // end of maze not covered in loop
 	    repaint();
@@ -194,12 +193,12 @@ public class MazeArea extends JComponent implements Runnable {
             }
         int r;
         repaint();
-        wait(waitTime/5);
+        wait(waittime2);
         for (int i=wallCount-1; i>0; i--) {
             r = (int)(Math.random() * i); // Randomly chooses out of the possible choices
             tearDown(wallrow[r],wallcol[r]);
             repaint();
-            wait(waitTime/5);
+            wait(waittime2);
             wallrow[r] = wallrow[i];
             wallcol[r] = wallcol[i];
             
@@ -330,7 +329,7 @@ public class MazeArea extends JComponent implements Runnable {
 	}
 
     
-    int highLowAlgo(int row,int col)
+    static int highLowAlgo(int row,int col)
     {
     	int wait = (int) (1.5*(Math.log(500000/((row*col)-10)))-4);
     	
@@ -339,7 +338,7 @@ public class MazeArea extends JComponent implements Runnable {
     	
     	return wait;
     }
-    double highLowAlgo2(int row,int col)
+    static double highLowAlgo2(int row,int col)
     {
     	if (row+col>161 && row+col<320) 
     		return 1;
@@ -349,9 +348,9 @@ public class MazeArea extends JComponent implements Runnable {
     }
 
     
-    public static void wait(int sleepTime) // method delays usually used to paint components slower
+    public static void wait(double sleepTime) // method delays usually used to paint components slower
     {
-		try { Thread.sleep(sleepTime); }
+		try { Thread.sleep((long) sleepTime); }
 		catch (InterruptedException e) { }
     }
     
@@ -437,7 +436,7 @@ public class MazeArea extends JComponent implements Runnable {
 		MatToBufImg ImageConverter = new MatToBufImg();
 
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		VideoCapture video = new VideoCapture(0);
+		VideoCapture video = new VideoCapture(1);
 		
 		if(!video.isOpened()) {
 			System.out.println("!!! DID NOT CONNEC 1!!");

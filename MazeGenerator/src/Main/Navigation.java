@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import Main.WallFollower.Direction;
+import edu.cmu.ri.createlab.terk.robot.finch.Finch;
 
 public class Navigation extends PrintTimes{
 	int startrow = 1;
@@ -12,8 +13,8 @@ public class Navigation extends PrintTimes{
 	static int colPos = 0;
 	private static Direction currentDirection;
 	static Queue<String> q = new LinkedList();
-	static Queue<Integer> que = new LinkedList();
-	static Object myFinch;
+	
+	static Finch myFinch = new Finch();
 	
 	public static void start(int[][] maze) {
 		q.clear();
@@ -23,7 +24,9 @@ public class Navigation extends PrintTimes{
 		setCurrentDirection(Direction.Right);
 		move2(1,0,solveMaze);
 		printQueue(q);
-//		finchMovement(que);
+		
+		
+		
 	}
 	
 	enum Direction{
@@ -32,23 +35,39 @@ public class Navigation extends PrintTimes{
 		Left,
 		Right,
 	}
+	
 	static int j = 0;
 	static int count = 0;
 	
-//	static void finchMovement(Queue<Integer> q) {
-//		for(Integer s : q) {
-//			if(q.equals(0)) {
-//				// Move Forward 3 seconds
-//				myFinch.setWheelVelocities(255,255,3000);
-//			}else if(q.equals(1)) {
-//				// Turn Right 1 seconds
-//				myFinch.setWheelVelocities(0,255,1000);
-//			}else if(q.equals(2)) {
-//				// Turn Left 1 seconds
-//				myFinch.setWheelVelocities(255,0,1000);
-//			}
-//		}
-//	}
+	static void finchMovement(Queue<String> q, int dist) {
+
+		MazeArea.wait(5000.0);
+		for(String s : q) {
+//			MazeArea.wait(1000);
+			if(s.contains("Forward")) {
+				// Move Forward 3 seconds
+				myFinch.setWheelVelocities(108,110,dist);
+				System.out.println("Forwards..."+dist);
+			}else if(s.contains("Turn Right")) {
+				// Turn Right 1 seconds
+				myFinch.setWheelVelocities(50,-53,1900);
+				System.out.println("Right...");
+			}else if(s.contains("Turn Left")) {
+				// Turn Left 1 seconds
+				myFinch.setWheelVelocities(-50,53,1900);
+				System.out.println("Left...");
+			}
+		}
+		
+//		myFinch.setWheelVelocities(109,110,dist);
+//		myFinch.setWheelVelocities(109,110,dist);
+//		myFinch.setWheelVelocities(109,110,dist);
+//		myFinch.setWheelVelocities(50,-53,1900);
+//		myFinch.setWheelVelocities(50,-53,1900);
+//		myFinch.setWheelVelocities(100,110,dist);
+//		myFinch.setWheelVelocities(100,110,dist);
+//		myFinch.setWheelVelocities(100,110,dist);
+	}
 	
 	static void printQueue(Queue<String> q) {
 		for(String s : q) { 
@@ -90,7 +109,6 @@ static void move2(int row, int col, int[][] maze)
 			if(currentDirection!=Direction.Right)
 				changeDirectionRight();
 			q.add("Forward");
-			que.add(0);
 			maze[row][col]=3;
 			move2(row,col+1,maze);
 		}
@@ -98,7 +116,6 @@ static void move2(int row, int col, int[][] maze)
 				if(currentDirection!=Direction.Left)
 					changeDirectionLeft();
 				q.add("Forward");
-				que.add(0);
 				maze[row][col]=3;
 				move2(row,col-1,maze);
 			}
@@ -106,7 +123,6 @@ static void move2(int row, int col, int[][] maze)
 				if(currentDirection!=Direction.Up)
 					changeDirectionUp();
 				q.add("Forward");
-				que.add(0);
 				maze[row][col]=3;
 				move2(row-1,col,maze);
 			}
@@ -114,7 +130,6 @@ static void move2(int row, int col, int[][] maze)
 				if(currentDirection!=Direction.Down)
 					changeDirectionDown();
 				q.add("Forward");
-				que.add(0);
 				maze[row][col]=3;
 				move2(row+1,col,maze);
 			}
@@ -124,11 +139,9 @@ static void move2(int row, int col, int[][] maze)
 private static void changeDirectionRight() {
 	if(currentDirection==Direction.Up) {
 		q.add("Turn Right");
-		que.add(1);
 	}
 	if(currentDirection==Direction.Down) {
 		q.add("Turn Left");
-		que.add(2);
 	}
 	setCurrentDirection(Direction.Right);
 }
@@ -136,11 +149,9 @@ private static void changeDirectionRight() {
 	private static void changeDirectionLeft() {
 		if(currentDirection==Direction.Down) {
 			q.add("Turn Right");
-			que.add(1);
 		}
 		if(currentDirection==Direction.Up) {
 			q.add("Turn Left");
-			que.add(2);
 		}
 		setCurrentDirection(Direction.Left);
 	}
@@ -148,11 +159,9 @@ private static void changeDirectionRight() {
 	private static void changeDirectionUp() {
 		if(currentDirection==Direction.Left) {
 			q.add("Turn Right");
-			que.add(1);
 		}
 		if(currentDirection==Direction.Right) {
 			q.add("Turn Left");
-			que.add(2);
 		}
 		setCurrentDirection(Direction.Up);
 	}
@@ -160,11 +169,9 @@ private static void changeDirectionRight() {
 	private static void changeDirectionDown() {
 		if(currentDirection==Direction.Right) {
 			q.add("Turn Right");
-			que.add(1);
 		}
 		if(currentDirection==Direction.Left) {
 			q.add("Turn Left");
-			que.add(2);
 		}
 		setCurrentDirection(Direction.Down);
 	}
