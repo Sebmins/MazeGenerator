@@ -3,7 +3,7 @@
 
 ## Table of Contents
 
-* [How to use](#how-to-use?)
+* [How to use](#how-to-use)
 * [Maze Generation](#Maze-Generation)
   * [Kruskal's Algorithm](#kruskal's-Algorithm)
 * [Maze Solving](#Maze-solving)
@@ -14,7 +14,7 @@
 * [Dissertation](#dissertation)
 
 
-## How to use?
+## How to use
 
 ```java
 VideoCapture video = new VideoCapture(0); // change the integer to 1 if the webcam is plugged in via usb
