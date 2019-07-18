@@ -7,10 +7,10 @@
 * [Maze Generation](#Maze-Generation)
   * [Kruskal's Algorithm](#kruskal's-Algorithm)
 * [Maze Solving](#Maze-solving)
-  * [Depth First Search](#importing)
-  * [Breadth First Search](#html)
-  * [Wall Follower](#json)
-* [Robot?](#installation)
+  * [Depth First Search](#Depth-first-search)
+  * [Breadth First Search](#Breadth-first-search)
+  * [Wall Follower](#wall-follower)
+* [Robot](#robot)
 * [Dissertation](#dissertation)
 
 
@@ -33,3 +33,15 @@ After researching many different algoirthms for generating a random maze I chose
 To see further explainations of researching and implementing the algorithm look at Chapter (2.5.2) and (5.4) from my [dissertation](#dissertation).
 
 ## Maze Solving
+
+### Depth first search
+
+### Breadth first search
+
+### Wall follower
+
+## Robot
+
+## Dissertation
+
+[Link to disseration on github](1541110.docx)
