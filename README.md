@@ -1,8 +1,10 @@
 # MazeGenerator
-< Description of project Brunel University Dissertation >
+
+This was my final year project (disseration) 
 
 ## Table of Contents
 
+* [What can it do](#what-can-it-do)
 * [How to use](#how-to-use)
 * [Maze Generation](#Maze-Generation)
   * [Kruskal's Algorithm](#kruskal's-Algorithm)
@@ -41,11 +43,13 @@ To see further explainations of researching and implementing the algorithm look 
 
 ## Maze Solving
 
-### Depth first search
+3 Algorithms were implemented to solve the maze, these were picked based on time to solve, shortest path found and ease to implementation. For more infomration see my [dissertation](#dissertation).
 
-### Breadth first search
+* **Depth first search** - The fastest of all algorithms, it shows the shortest path as it is searching and marks wrong turns in red.
 
-### Wall follower
+* **Breadth first search** - Finds the shortest path through a braided maze, traces the shortest path back once it finds the end, but is slow.
+
+* **Wall follower** - Is the only implemented algorithm that doesn't find the shortest path a maze. Is a simplistic algorithm that humans can follow easily.
 
 ## Robot
 
