@@ -1,6 +1,6 @@
 # MazeGenerator
 
-This was my final year project (disseration) 
+This was a 6 month project for my final year project (disseration). 
 
 ## Table of Contents
 
@@ -52,6 +52,8 @@ To see further explainations of researching and implementing the algorithm look 
 * **Wall follower** - Is the only implemented algorithm that doesn't find the shortest path a maze. Is a simplistic algorithm that humans can follow easily.
 
 ## Robot
+
+The finch robot (birdbraintechnologies.com/finch/) was used to solve the virutal maze, a new algorithm was created that the robot could understand.
 
 ## Dissertation
 
