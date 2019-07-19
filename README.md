@@ -13,6 +13,13 @@
 * [Robot](#robot)
 * [Dissertation](#dissertation)
 
+## What can it do
+
+Generate a random maze and show the user step by step how it is generated
+Solve the maze with 3 differing algorithms, capturing data on time taken, amount of wrong turns, etc.
+Video integration to allow the maze to be overlayed ontop of the video.
+Solve the maze with an algorithm that can be translated into directions for a human/robot. Input avaliable for robot to solve the maze.
+
 
 ## How to use
 
