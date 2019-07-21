@@ -41,6 +41,8 @@ After researching many different algoirthms for generating a random maze I chose
 
 To see further explainations of researching and implementing the algorithm look at Chapter (2.5.2) and (5.4) from my [dissertation](#dissertation).
 
+![](Pics/Kruskals/Kruskal.gif)
+
 ## Maze Solving
 
 3 Algorithms were implemented to solve the maze, these were picked based on time to solve, shortest path found and ease to implementation. For more infomration see my [dissertation](#dissertation).
