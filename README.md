@@ -28,7 +28,7 @@ Solve the maze with an algorithm that can be translated into directions for a hu
 ```java
 VideoCapture video = new VideoCapture(0); // change the integer to 1 if the webcam is plugged in via usb
 
-Number of Rows & Number of Columns: // Enter even numbers 
+Number of Rows & Number of Columns: // Enter odd numbers 
 
 WaitTime: // Enter the amount of miliseconds for the application to wait between each change
 
