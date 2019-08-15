@@ -41,7 +41,7 @@ After researching many different algoirthms for generating a random maze I chose
 
 To see further explainations of researching and implementing the algorithm look at Chapter (2.5.2) and (5.4) from my [dissertation](#dissertation).
 
-![](Pics/Kruskals/KruL.gif) ![](Pics/Kruskals/Kruskal.gif)
+![](Gifs/KruL.gif) ![](Gifs/Kruskal.gif)
 
 ## Maze Solving
 
@@ -49,15 +49,15 @@ To see further explainations of researching and implementing the algorithm look 
 
 * **Depth first search** - The fastest of all algorithms, it shows the shortest path as it is searching and marks wrong turns in red.
 
-![](Pics/Kruskals/DfsL.gif) ![](Pics/Kruskals/Dfs.gif)
+![](Gifs/DfsL.gif) ![](Gifs/Dfs.gif)
 
 * **Breadth first search** - Finds the shortest path through a braided maze, traces the shortest path back once it finds the end, but is slow.
 
-![](Pics/Kruskals/BfsL.gif) ![](Pics/Kruskals/Bfs.gif)
+![](Gifs/BfsL.gif) ![](Gifs/Bfs.gif)
 
 * **Wall follower** - Is the only implemented algorithm that doesn't find the shortest path a maze. Is a simplistic algorithm that humans can follow easily.
 
-![](Pics/Kruskals/WallL.gif) ![](Pics/Kruskals/Wall.gif)
+![](Gifs/WallL.gif) ![](Gifs/Wall.gif)
 
 ## Robot
 
