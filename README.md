@@ -41,7 +41,7 @@ After researching many different algoirthms for generating a random maze I chose
 
 To see further explainations of researching and implementing the algorithm look at Chapter (2.5.2) and (5.4) from my [dissertation](#dissertation).
 
-![](Gifs/KruL.gif) ![](Gifs/Kruskal.gif)
+![](Gifs/KruL.gif) ![](Gifs/Kru.gif)
 
 ## Maze Solving
 
