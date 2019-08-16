@@ -1,6 +1,6 @@
 # MazeGenerator
 
-This was a 6 month project for my final year project (disseration). 
+This was a 6-month project for my final year project. 
 
 ## Table of Contents
 
@@ -15,12 +15,9 @@ This was a 6 month project for my final year project (disseration).
 * [Robot](#robot)
 * [Dissertation](#dissertation)
 
-## What can it do
+## What does it do
 
-Generate a random maze and show the user step by step how it is generated
-Solve the maze with 3 differing algorithms, capturing data on time taken, amount of wrong turns, etc.
-Video integration to allow the maze to be overlayed ontop of the video.
-Solve the maze with an algorithm that can be translated into directions for a human/robot. Input avaliable for robot to solve the maze.
+Procedually generates a random perfect maze of any odd input integer. The procedual generation can be slowed down by milisecond inputted. The maze will then show the solved path with the algorithm chosen, 3 differing algorithms can be chosen from. All algorithms will be run capturing data on time taken, amount of wrong turns, etc. Video integration to allow the maze to be overlayed ontop of the video. Solve the maze with an algorithm that can be translated into directions for a human/robot. Input avaliable for robot to solve the maze.
 
 
 ## How to use
@@ -65,4 +62,4 @@ The finch robot (birdbraintechnologies.com/finch/) was used to solve the virutal
 
 ## Dissertation
 
-[Link to disseration on github](1541110.docx)
+[Link to disseration on github](Dissertation.pdf)
