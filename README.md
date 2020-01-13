@@ -1,6 +1,6 @@
 # MazeGenerator
 
-This was a 6-month project for my final year project. 
+This was a 6-month final year project at Brunel University. 
 
 ## Table of Contents
 
